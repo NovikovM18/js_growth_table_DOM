@@ -6,55 +6,12 @@ const textArr = textTab.split('<tr>');
 
 textArr.shift();
 
-let newText = [];
-
-// function addCol() {
-//   newText = textArr.map(el => (`<tr> <td></td>` + el));
-
-//   const text = newText.join('');
-
-//   tab.innerHTML = text;
-// }
-
-// function reCol() {
-//   newText = textArr.map(el => (el.replace(`<td></td>`, ` `)));
-
-//   const text = newText.join('');
-
-//   tab.innerHTML = text;
-// }
-
-// function addRow() {
-//   const re = `<td></td>`;
-//   let rRe = ``;
-
-//   for (let i = 0; i < 4; i++) {
-//     rRe += re;
-//   }
-
-//   const row = `
-//   <tr>
-//     ${rRe}
-//   </tr>
-// `;
-
-//   textArr.push(row);
-
-//   const text = textArr.join('');
-
-//   tab.innerHTML = text;
-// }
-
-// function reRow() {
-//   textArr.pop();
-
-//   const text = textArr.join('');
-
-//   tab.innerHTML = text;
-// }
-
 document.querySelector('.append-row')
   .addEventListener('click', () => {
+    if (textArr.length > 9) {
+      return;
+    }
+
     const re = `<td></td>`;
     let rRe = ``;
 
@@ -77,6 +34,9 @@ document.querySelector('.append-row')
 
 document.querySelector('.remove-row')
   .addEventListener('click', () => {
+    if (textArr.length < 3) {
+      return;
+    }
     textArr.pop();
 
     const text = textArr.join('');
@@ -86,7 +46,7 @@ document.querySelector('.remove-row')
 
 document.querySelector('.append-column')
   .addEventListener('click', () => {
-    newText = textArr.map(el => (`<tr> <td></td>` + el));
+    const newText = textArr.map(el => (`<tr> <td></td>` + el));
 
     const text = newText.join('');
 
@@ -95,7 +55,7 @@ document.querySelector('.append-column')
 
 document.querySelector('.remove-column')
   .addEventListener('click', () => {
-    newText = textArr.map(el => (el.replace(`<td></td>`, ` `)));
+    const newText = textArr.map(el => (el.replace(`<td></td>`, ` `)));
 
     const text = newText.join('');
 
