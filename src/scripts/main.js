@@ -8,56 +8,36 @@ textArr.shift();
 
 document.querySelector('.append-row')
   .addEventListener('click', () => {
-    if (textArr.length > 9) {
-      return;
+    if (tab.children.length < 10) {
+      tab.append(tab.children[0].cloneNode(true));
     }
-
-    const re = `<td></td>`;
-    let rRe = ``;
-
-    for (let i = 0; i < 4; i++) {
-      rRe += re;
-    }
-
-    const row = `
-    <tr>
-      ${rRe}
-    </tr>
-  `;
-
-    textArr.push(row);
-
-    const text = textArr.join('');
-
-    tab.innerHTML = text;
   });
 
 document.querySelector('.remove-row')
   .addEventListener('click', () => {
-    if (textArr.length < 3) {
-      return;
+    if (tab.children.length > 2) {
+      tab.firstChild.remove();
     }
-    textArr.pop();
-
-    const text = textArr.join('');
-
-    tab.innerHTML = text;
   });
 
 document.querySelector('.append-column')
   .addEventListener('click', () => {
-    const newText = textArr.map(el => (`<tr> <td></td>` + el));
+    const tableCollums = tab.children[0].children;
 
-    const text = newText.join('');
-
-    tab.innerHTML = text;
+    if (tableCollums.length <= 9) {
+      for (const item of [...tab.children]) {
+        item.append(item.children[0].cloneNode(true));
+      }
+    }
   });
 
 document.querySelector('.remove-column')
   .addEventListener('click', () => {
-    const newText = textArr.map(el => (el.replace(`<td></td>`, ` `)));
+    const tableCollums = tab.children[0].children;
 
-    const text = newText.join('');
-
-    tab.innerHTML = text;
+    if (tableCollums.length > 2) {
+      for (const item of [...tab.children]) {
+        item.firstChild.remove();
+      }
+    }
   });
