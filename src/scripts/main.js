@@ -1,10 +1,6 @@
 'use strict';
 
 const tab = document.querySelector('tbody');
-const textTab = tab.innerHTML;
-const textArr = textTab.split('<tr>');
-
-textArr.shift();
 
 document.querySelector('.append-row')
   .addEventListener('click', () => {
